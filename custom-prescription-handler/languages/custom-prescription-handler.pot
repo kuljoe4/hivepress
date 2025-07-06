@@ -1,0 +1,21 @@
+# Copyright (C) 2024 Jules (AI Assistant)
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Custom Prescription Handler for WooCommerce 1.0.0\n"
+"Report-Msgid-Bugs-To: https://example.com/plugins/custom-prescription-handler/issues\n"
+"Last-Translator: Jules (AI Assistant) <jules@example.com>\n"
+"Language-Team: Jules (AI Assistant) <jules@example.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-03-10 12:00+0000\n"
+"PO-Revision-Date: 2024-03-10 12:00+0000\n"
+"X-Generator: Poedit 2.2\n"
+"X-Domain: custom-prescription-handler\n"
+
+# #-#-#-#-#  custom-prescription-handler.pot (Custom Prescription Handler for WooCommerce 1.0.0)  #-#-#-#-#
+# Hello World!
+# msgid "Hello World!"
+# msgstr ""

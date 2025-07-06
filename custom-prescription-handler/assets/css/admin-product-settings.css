@@ -1,0 +1,98 @@
+/* CPH Admin Product Settings Styles */
+#cph_option_groups_wrapper .cph_option_group {
+    margin-bottom: 15px;
+    border: 1px solid #ccd0d4;
+}
+
+#cph_option_groups_wrapper .cph_option_group .hndle {
+    cursor: move;
+}
+
+#cph_option_groups_wrapper .cph_option_group .inside {
+    padding: 10px;
+}
+
+#cph_option_groups_wrapper .cph_field {
+    padding: 10px;
+    border: 1px dashed #e0e0e0;
+    margin-bottom: 10px;
+    background: #fdfdfd;
+}
+#cph_option_groups_wrapper .cph_field hr {
+    margin-top: 15px;
+}
+
+#cph_option_groups_wrapper .cph_field label {
+    display: inline-block;
+    width: 150px;
+    vertical-align: top;
+}
+
+#cph_option_groups_wrapper .cph_field input[type="text"],
+#cph_option_groups_wrapper .cph_field select {
+    min-width: 250px;
+}
+
+#cph_option_groups_wrapper .cph_group_name_input {
+    width: 90%;
+    font-size: 1em;
+    border: none;
+    box-shadow: none;
+    padding: 5px 0;
+}
+#cph_option_groups_wrapper .cph_group_name_input:focus {
+    box-shadow: none;
+}
+
+
+#cph_option_groups_wrapper .cph_field_choices_wrapper {
+    margin-top: 10px;
+    padding-left: 20px;
+    border-left: 3px solid #f0f0f0;
+}
+#cph_option_groups_wrapper .cph_field_choices_wrapper h4 {
+    margin-bottom: 5px;
+}
+#cph_option_groups_wrapper .cph_choice {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+    align-items: center;
+}
+#cph_option_groups_wrapper .cph_choice input[type="text"] {
+    flex: 1;
+    min-width: auto; /* override general min-width */
+}
+#cph_option_groups_wrapper .cph_choice input[type="text"]:nth-of-type(1) { flex-basis: 40%; } /* Label */
+#cph_option_groups_wrapper .cph_choice input[type="text"]:nth-of-type(2) { flex-basis: 30%; } /* Value */
+#cph_option_groups_wrapper .cph_choice input[type="text"]:nth-of-type(3) { flex-basis: 20%; } /* Price Adj. */
+
+#cph_option_groups_wrapper .cph_remove_option_group_button,
+#cph_option_groups_wrapper .cph_remove_field_button,
+#cph_option_groups_wrapper .cph_remove_choice_button {
+    color: #a00;
+    border-color: #a00;
+    padding: 2px 5px !important; /* reduce padding */
+    line-height: 1.2 !important; /* reduce line height */
+    height: auto !important; /* reduce height */
+}
+#cph_option_groups_wrapper .cph_remove_option_group_button:hover,
+#cph_option_groups_wrapper .cph_remove_field_button:hover,
+#cph_option_groups_wrapper .cph_remove_choice_button:hover {
+    color: #fff;
+    background-color: #a00;
+}
+
+#cph_option_groups_wrapper .description {
+    font-style: italic;
+    color: #666;
+}
+
+/* Make sortable placeholders look decent */
+.ui-sortable-placeholder {
+    border: 1px dashed #bbb;
+    background: #f5f5f5;
+    height: 50px;
+    margin-bottom: 15px;
+    visibility: visible !important; /* WordPress tends to hide placeholders */
+}

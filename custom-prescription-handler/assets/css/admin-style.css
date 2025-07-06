@@ -1,0 +1,12 @@
+/* Custom Prescription Handler Admin Styles */
+
+/* Styling for CPH options in Admin Order View (and potentially other admin areas where item meta is shown) */
+.order_details table.woocommerce_order_items .wc-order-item-meta .cph-order-item-options {
+    margin-left: 10px !important; /* Ensure it's slightly indented like other meta */
+    padding: 5px 0 !important;
+    font-size: 0.9em !important; /* Make it slightly smaller than main item name */
+}
+
+.order_details table.woocommerce_order_items .wc-order-item-meta .cph-order-item-options strong {
+    color: #555; /* Darken the label slightly */
+}

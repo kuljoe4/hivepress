@@ -1,0 +1,186 @@
+/* Custom Prescription Handler Frontend Styles */
+
+/* General Wrapper for all CPH options */
+.cph-options-wrapper {
+    margin: 20px 0; /* Add some space around the options block */
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fdfdfd; /* Slightly lighter than default #f9f9f9 */
+}
+
+/* Inner container for the form elements */
+.cph_options_form_inner {
+    /* Add any specific styling for the inner form if needed */
+}
+
+/* Styling for each group of options (e.g., "Prescription", "Lens Type") */
+.cph_options_form_inner .cph_option_group_display {
+    margin-bottom: 25px; /* Increased spacing between groups */
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #dcdcdc; /* Lighter, dashed border */
+}
+.cph_options_form_inner .cph_option_group_display:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.cph_options_form_inner .cph_group_name {
+    font-size: 1.25em; /* Slightly larger group name */
+    margin-top: 0;
+    margin-bottom: 15px; /* More space below group name */
+    color: #2c3e50; /* A common dark blue/grey for titles */
+    font-weight: 600;
+}
+
+/* Table used for laying out labels and fields */
+.cph_options_form_inner .cph_fields_table {
+    width: 100%;
+    border: none;
+    border-collapse: collapse; /* Ensure no double borders if cells have borders */
+}
+.cph_options_form_inner .cph_fields_table tr.cph_field_row {
+    margin-bottom: 10px; /* This won't work on tr, use padding on td instead */
+}
+.cph_options_form_inner .cph_fields_table td {
+    padding-bottom: 12px; /* Spacing between rows */
+    vertical-align: top;
+}
+.cph_options_form_inner .cph_fields_table tr:last-child td {
+    padding-bottom: 0; /* No extra padding for the last field in a group */
+}
+
+
+.cph_options_form_inner .cph_fields_table td.label {
+    width: 35%; /* Slightly more space for labels */
+    font-weight: 500; /* Less heavy than bold */
+    padding-right: 15px;
+    padding-top: 10px; /* Align with typical input height + padding */
+    color: #34495e; /* Darker grey for labels */
+}
+
+.cph_options_form_inner .cph_fields_table td.value {
+    width: 65%;
+}
+
+/* Common styling for input fields */
+.cph_options_form_inner .cph_input,
+.cph_options_form_inner .cph_select,
+.cph_options_form_inner .cph_textarea { /* if textarea is added later */
+    width: 100%;
+    max-width: 380px; /* Slightly wider max-width */
+    padding: 10px; /* More padding */
+    border: 1px solid #ccd0d4; /* Standard WP admin border color */
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 1em; /* Ensure consistent font size */
+    transition: border-color 0.15s ease-in-out;
+}
+.cph_options_form_inner .cph_input:focus,
+.cph_options_form_inner .cph_select:focus,
+.cph_options_form_inner .cph_textarea:focus {
+    border-color: #2271b1; /* WordPress blue for focus */
+    box-shadow: 0 0 0 1px #2271b1;
+    outline: none;
+}
+
+
+/* Styling for radio button and checkbox lists */
+.cph_options_form_inner .cph_radio_list,
+.cph_options_form_inner .cph_checkbox_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.cph_options_form_inner .cph_radio_list li,
+.cph_options_form_inner .cph_checkbox_list li {
+    margin-bottom: 10px; /* More spacing between choices */
+    display: flex;
+    align-items: center;
+}
+.cph_options_form_inner .cph_radio_list li:last-child,
+.cph_options_form_inner .cph_checkbox_list li:last-child {
+    margin-bottom: 0;
+}
+
+.cph_options_form_inner .cph_radio_list input[type="radio"],
+.cph_options_form_inner .cph_checkbox_list input[type="checkbox"] {
+    margin-right: 10px; /* More space next to radio/checkbox */
+    margin-top: 0;
+    transform: scale(1.1); /* Slightly larger radio/checkboxes */
+}
+.cph_options_form_inner .cph_radio_list label,
+.cph_options_form_inner .cph_checkbox_list label {
+    cursor: pointer; /* Indicate clickable label */
+}
+
+
+/* Field description styling (if implemented) */
+.cph_options_form_inner .cph_field_description {
+    display: block;
+    font-size: 0.85em; /* Smaller */
+    color: #50575e; /* WP grey */
+    margin-top: 6px;
+    font-style: italic;
+}
+
+/* Dynamic price display area */
+#cph_dynamic_price_display_area {
+    margin-top: 10px; /* Space above price if options exist */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+}
+#cph_dynamic_price_display_area .price {
+    font-size: 1.6em; /* Larger price display */
+    font-weight: bold;
+    color: #c0392b; /* A distinct color for emphasis, e.g., a warm red */
+    margin: 0; /* Remove default paragraph margin */
+    text-align: right;
+}
+#cph_dynamic_price_display_area .price .woocommerce-Price-currencySymbol {
+    /* Style currency symbol if needed */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) { /* Adjusted breakpoint */
+    .cph_options_form_inner .cph_fields_table td.label,
+    .cph_options_form_inner .cph_fields_table td.value {
+        width: 100%;
+        display: block;
+        padding-right: 0;
+    }
+    .cph_options_form_inner .cph_fields_table td.label {
+        margin-bottom: 6px; /* Space between label and its field on mobile */
+        padding-top: 0;
+        font-weight: 600; /* Make labels slightly bolder on mobile for clarity */
+    }
+    .cph_options_form_inner .cph_input,
+    .cph_options_form_inner .cph_select,
+    .cph_options_form_inner .cph_textarea {
+        max-width: 100%; /* Inputs take full width available */
+    }
+    #cph_dynamic_price_display_area .price {
+        text-align: left; /* Align price to left on mobile */
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 480px) {
+    .cph-options-wrapper {
+        padding: 15px; /* Reduce padding on very small screens */
+    }
+    .cph_options_form_inner .cph_group_name {
+        font-size: 1.15em;
+    }
+    .cph_options_form_inner .cph_input,
+    .cph_options_form_inner .cph_select,
+    .cph_options_form_inner .cph_textarea {
+        padding: 8px; /* Slightly smaller padding for inputs */
+    }
+}

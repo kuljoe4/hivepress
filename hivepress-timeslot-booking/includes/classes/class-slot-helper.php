@@ -27,15 +27,21 @@ class Slot_Helper {
 	 * @return array
 	 */
 	public static function get_available_slots( $listing_id, $date ) {
-		$settings = self::get_listing_settings( $listing_id );
+		$listing = hivepress()->listing->get_by_id( $listing_id );
 
-		if ( ! $settings['enable_time_slots'] ) {
+		if ( ! $listing || ! $listing->get( 'enable_time_slots' ) ) {
 			return [];
 		}
 
-		$start_time   = strtotime( $date . ' ' . $settings['start_time'] );
-		$end_time     = strtotime( $date . ' ' . $settings['end_time'] );
-		$slot_duration = $settings['slot_duration'] * 60;
+		$day_of_week = strtolower( date( 'l', strtotime( $date ) ) );
+
+		if ( ! in_array( $day_of_week, $listing->get( 'days_of_week' ), true ) ) {
+			return [];
+		}
+
+		$start_time   = strtotime( $date . ' ' . $listing->get( 'start_time' ) );
+		$end_time     = strtotime( $date . ' ' . $listing->get( 'end_time' ) );
+		$slot_duration = $listing->get( 'slot_duration' ) * 60;
 
 		$available_slots = [];
 		$current_time    = $start_time;
@@ -81,21 +87,4 @@ class Slot_Helper {
 		return $booked_slots;
 	}
 
-	/**
-	 * Get listing settings.
-	 *
-	 * @param int $listing_id
-	 * @return array
-	 */
-	public static function get_listing_settings( $listing_id ) {
-		$settings = [
-			'enable_time_slots' => get_post_meta( $listing_id, '_enable_time_slots', true ),
-			'slot_duration'     => get_post_meta( $listing_id, '_slot_duration', true ),
-			'start_time'        => get_post_meta( $listing_id, '_start_time', true ),
-			'end_time'          => get_post_meta( $listing_id, '_end_time', true ),
-			'days_of_week'      => get_post_meta( $listing_id, '_days_of_week', true ),
-		];
-
-		return $settings;
-	}
 }

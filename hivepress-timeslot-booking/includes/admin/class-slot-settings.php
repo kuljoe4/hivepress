@@ -24,8 +24,7 @@ class Slot_Settings {
 	 */
 	public function __construct() {
 		add_filter( 'hivepress/v1/meta_boxes', [ $this, 'add_meta_box' ] );
-		add_action( 'hivepress/v1/models/listing/create', [ $this, 'save_listing_settings' ] );
-		add_action( 'hivepress/v1/models/listing/update', [ $this, 'save_listing_settings' ] );
+		add_action( 'hivepress/v1/models/listing/save', [ $this, 'save_listing_settings' ] );
 	}
 
 	/**
@@ -86,26 +85,27 @@ class Slot_Settings {
 	 * Save listing settings.
 	 *
 	 * @param int $listing_id
+	 * @param array $values
 	 */
-	public function save_listing_settings( $listing_id ) {
-		if ( isset( $_POST['enable_time_slots'] ) ) {
-			update_post_meta( $listing_id, '_enable_time_slots', sanitize_text_field( $_POST['enable_time_slots'] ) );
+	public function save_listing_settings( $listing_id, $values ) {
+		if ( isset( $values['enable_time_slots'] ) ) {
+			hivepress()->listing->get_by_id( $listing_id )->set( 'enable_time_slots', $values['enable_time_slots'] )->save();
 		}
 
-		if ( isset( $_POST['slot_duration'] ) ) {
-			update_post_meta( $listing_id, '_slot_duration', sanitize_text_field( $_POST['slot_duration'] ) );
+		if ( isset( $values['slot_duration'] ) ) {
+			hivepress()->listing->get_by_id( $listing_id )->set( 'slot_duration', $values['slot_duration'] )->save();
 		}
 
-		if ( isset( $_POST['start_time'] ) ) {
-			update_post_meta( $listing_id, '_start_time', sanitize_text_field( $_POST['start_time'] ) );
+		if ( isset( $values['start_time'] ) ) {
+			hivepress()->listing->get_by_id( $listing_id )->set( 'start_time', $values['start_time'] )->save();
 		}
 
-		if ( isset( $_POST['end_time'] ) ) {
-			update_post_meta( $listing_id, '_end_time', sanitize_text_field( $_POST['end_time'] ) );
+		if ( isset( $values['end_time'] ) ) {
+			hivepress()->listing->get_by_id( $listing_id )->set( 'end_time', $values['end_time'] )->save();
 		}
 
-		if ( isset( $_POST['days_of_week'] ) ) {
-			update_post_meta( $listing_id, '_days_of_week', array_map( 'sanitize_text_field', $_POST['days_of_week'] ) );
+		if ( isset( $values['days_of_week'] ) ) {
+			hivepress()->listing->get_by_id( $listing_id )->set( 'days_of_week', $values['days_of_week'] )->save();
 		}
 	}
 }

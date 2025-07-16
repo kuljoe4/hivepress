@@ -15,16 +15,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Include core files.
-require_once plugin_dir_path( __FILE__ ) . 'includes/models/class-booking.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/admin/class-slot-settings.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-slot-helper.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/blocks/timeslot-booking.php';
+/**
+ * Check if HivePress is active.
+ */
+function hivepress_timeslot_booking_is_hivepress_active() {
+	return class_exists( 'HivePress\HivePress' );
+}
 
 /**
  * Initialize the plugin.
  */
 function hivepress_timeslot_booking_init() {
+	if ( ! hivepress_timeslot_booking_is_hivepress_active() ) {
+		add_action( 'admin_notices', 'hivepress_timeslot_booking_hivepress_inactive_notice' );
+		return;
+	}
+
+	// Include core files.
+	require_once plugin_dir_path( __FILE__ ) . 'includes/models/class-booking.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/admin/class-slot-settings.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-slot-helper.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/blocks/timeslot-booking.php';
+
 	// Register the booking model.
 	hivepress()->register_model( 'booking', new \HivePress\Models\Booking() );
 
@@ -36,6 +48,25 @@ function hivepress_timeslot_booking_init() {
 }
 
 add_action( 'plugins_loaded', 'hivepress_timeslot_booking_init' );
+
+/**
+ * Display a notice if HivePress is inactive.
+ */
+function hivepress_timeslot_booking_hivepress_inactive_notice() {
+	?>
+	<div class="notice notice-error">
+		<p>
+			<?php
+			printf(
+				/* translators: %s: HivePress plugin name. */
+				esc_html__( '%s requires the HivePress plugin to be installed and activated.', 'hivepress-timeslot-booking' ),
+				'<strong>' . esc_html__( 'HivePress Timeslot Booking', 'hivepress-timeslot-booking' ) . '</strong>'
+			);
+			?>
+		</p>
+	</div>
+	<?php
+}
 
 /**
  * Get available slots AJAX handler.
@@ -70,10 +101,14 @@ function hivepress_timeslot_booking_submit_booking() {
 		return;
 	}
 
-	$settings = \HivePress\Classes\Slot_Helper::get_listing_settings( $listing_id );
+	$listing = hivepress()->listing->get_by_id( $listing_id );
+
+	if ( ! $listing ) {
+		return;
+	}
 
 	$start_time = $date . ' ' . $time;
-	$end_time   = date( 'Y-m-d H:i:s', strtotime( $start_time ) + $settings['slot_duration'] * 60 );
+	$end_time   = date( 'Y-m-d H:i:s', strtotime( $start_time ) + $listing->get( 'slot_duration' ) * 60 );
 
 	hivepress()->booking->create(
 		[
